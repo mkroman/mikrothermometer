@@ -22,7 +22,7 @@
 #ifndef __SHT3X_I2C_H
 #define __SHT3X_I2C_H
 
-// Require i2c library
+// Require the i2c library
 #include <Wire.h>
 
 #include <Arduino.h>
@@ -33,12 +33,35 @@
 #define SHT3X_ERROR_TEMP_CRC 3
 #define SHT3X_ERROR_HUMIDITY_CRC 4
 
+/// The SHT3X class wraps the I2C communication driver for a Sensiron SHT3x sensor.
 class SHT3X {
 public:
+  /// Creates a new wrapper for an SHT3x I2C sensor on `address`.
+  ///
+  /// @param[in] address The I2C address of the SHT3x sensor.
   SHT3X(uint8_t address);
 
-  int reset();
+  /// Sends a soft reset command to the sensor.
+  ///
+  /// There's a 0.5ms - 1ms (min - max) soft reset delay on the sensor.
+  /// This function will keep the CPU busy for 1ms before returning.
+  int reset(void);
+
+  /// Acquires a single-shot measurement from the sensor.
+  ///
+  /// @param[out] temperature The temperature in centigrade scale.
+  /// @param[out] humidity    The humidity in relative humidity.
+  ///
+  /// @see GetErrorMessage for a user-readable error message.
+  ///
+  /// @return non-zero on failure, zero otherwise.
   int getMeasurement(float* temperature, float* humidity);
+
+  /// Returns a user-readable error message for the given code.
+  ///
+  /// @param[in] error_code The error code.
+  ///
+  /// @return user-readable error message.
   static const char* GetErrorMessage(unsigned int error_code);
 
 private:

@@ -33,7 +33,7 @@ uint8_t crc8(const uint8_t* data, int length) {
   return crc;
 }
 
-int SHT3X::reset() {
+int SHT3X::reset(void) {
   Wire.beginTransmission(_address);
   Wire.write(0x30);
   Wire.write(0xA2);
