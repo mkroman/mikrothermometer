@@ -9,7 +9,7 @@ SHT3X::SHT3X(uint8_t address) : _address(address) {
 
 // Run-time calculation of CRC8 polynomial
 //
-// TODO: Polynomial table
+// TODO: Pre-computed polynomial table
 // https://github.com/ControlEverythingCommunity/CE_ARDUINO_LIB/blob/master/SHT30/SHT30.cpp#L196
 uint8_t crc8(const uint8_t* data, int length) {
   // Extracted from the datasheet:
@@ -57,9 +57,8 @@ int SHT3X::getMeasurement(float* temperature, float* humidity) {
     return SHT3X_ERROR_I2C;
   }
 
-  // Delay for an abritary interval.
-  // If this delay is less than 12ms, the SHT3x will lock up on I2C for some unknown reason.
-  delay(12);
+  // Delay for 15ms. According to the datasheet, a high repeatability measurement can take up to 15ms.
+  delay(15);
 
   // Request the measurement packet (6 bytes.)
   result = Wire.requestFrom(_address, (size_t)SHT3X_RESPONSE_LENGTH);
