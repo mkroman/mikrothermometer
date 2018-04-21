@@ -1,6 +1,8 @@
 #ifndef MKTHERMOMETER_CONFIG_H
 #define MKTHERMOMETER_CONFIG_H
 
+#include <c_types.h>
+
 // Uncomment to enable LDR brightmess measurements.
 // The LDR must be connected to the ADC.
 // #define MKTHERMOMETER_LDR
@@ -18,7 +20,7 @@ namespace config {
   static const char* WIFI_PASSWORD = "secret";
   /// Human-readable sensor ID. Must be unique on the network.
   static const char* SENSOR_ID = "living-room-sensor";
-  
+
   /// The MQTT host to connect to.
   static const char* MQTT_HOST = "10.0.0.202";
   /// The MQTT port the host is listening on.
@@ -45,11 +47,10 @@ namespace config {
 
   /// The duration in µs that the ESP8266 will enter deep sleep before
   /// publishing sensor information again.
-  static const uint64_t POWER_DEEP_SLEEP_DURATION = (10 * 60) * 1e6;
+  static const uint64_t POWER_DEEP_SLEEP_DURATION = (5 * 60) * 1e6;
   /// The duration in µs that the ESP8266 wil sleep after failing while
   /// trying to publish sensor details before trying again.
   static const uint64_t POWER_DEEP_SLEEP_FAILURE_DURATION = (1 * 60) * 1e6;
 }
 
 #endif
-

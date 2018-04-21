@@ -22,14 +22,14 @@ uint8_t crc8(const uint8_t* data, int length) {
 
   for (int j = length; j; --j) {
     crc ^= *data++;
-    
+
     for (int i = 8; i; --i) {
       crc = (crc & 0x80)
         ? (crc << 1) ^ POLYNOMIAL
         : (crc << 1);
     }
   }
-  
+
   return crc;
 }
 
@@ -43,7 +43,7 @@ int SHT3X::reset(void) {
   delay(1);
 }
 
-int SHT3X::getMeasurement(float* temperature, float* humidity) {
+int SHT3X::getMeasurement(double* temperature, double* humidity) {
   uint8_t data[SHT3X_RESPONSE_LENGTH];
   byte result;
 
@@ -104,4 +104,3 @@ const char* SHT3X::GetErrorMessage(unsigned int error_code) {
 
   return NULL;
 }
-

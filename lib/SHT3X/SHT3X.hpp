@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2017 Mikkel Kroman <mk@maero.dk>
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -10,7 +10,7 @@
  * with the License.  You may obtain a copy of the License at
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
- *   
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,7 +18,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
+
 #ifndef __SHT3X_I2C_H
 #define __SHT3X_I2C_H
 
@@ -55,7 +55,7 @@ public:
   /// @see GetErrorMessage for a user-readable error message.
   ///
   /// @return non-zero on failure, zero otherwise.
-  int getMeasurement(float* temperature, float* humidity);
+  int getMeasurement(double* temperature, double* humidity);
 
   /// Returns a user-readable error message for the given code.
   ///
